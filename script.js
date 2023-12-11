@@ -24,7 +24,7 @@ Employee.prototype.jobGreet = function () {
 const person1 = new Person('Alice', 25);
 person1.greet(); // Output: Hello, my name is John, I am 30 years old.
 
-const employee1 = new Employee('Bob', 30, 'Manager.');
+const employee1 = new Employee('Bob', 30, 'Manager');
 employee1.greet(); 
 employee1.jobGreet();
 
