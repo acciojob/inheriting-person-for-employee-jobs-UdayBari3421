@@ -1,17 +1,39 @@
 // complete this js code
-function Person(name, age) {
-	this.name = name;
-	this.age = age;
+/*function Person(name, age){
+	greet(){
+		console.log(`Hello, my name is ${this.name} I am ${this.age} years old.`);
+	}
 }
 
-Person.prototype.greet{
-	console.log(`Hello, my name is ${name}, I am ${age} years old.`)
+function Employee(name, age, jobTitle){
+  Person.apply(this, [name, age]);
+  this.jobTitle = jobTitle;
+	jobGreet(){
+		console.log(`Hello, my name is ${this.name} I am ${this.age} years old, and my job title is ${this.jobTitle}`);
+	}
 }
+Employee.prototype = new Person();*/
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+Person.prototype.greet = function() { //method using prototype
+  console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+};
+
+
 function Employee(name, age, jobTitle) {
-	this.name = name;
-	this.age = age;
-	this.jobTitle = jobTitle;
+  Person.call(this, name, age);
+  this.jobTitle = jobTitle;
 }
+
+Employee.prototype = Object.create(Person.prototype);// prototype of person is inherited into employee
+Employee.prototype.constructor = Employee; //get constructor of employee
+
+Employee.prototype.jobGreet = function() {
+  console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
+};
 
 // Do not change code below this line
 window.Person = Person;
